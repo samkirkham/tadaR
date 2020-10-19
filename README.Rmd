@@ -1,0 +1,103 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+library(knitr)
+```
+
+# tadaR
+# R functions for processing and plotting output from TADA (TAsk Dynamics Application)
+
+Sam Kirkham
+
+### Loading data and accessing variables ###
+
+Load tidyverse libraries (needed below)
+
+```{r}
+library(tidyverse)
+```
+
+Load a TADA file using 'readTADA' (here we use a synthesised production of the word 'pipe').
+
+```{r}
+d <- readTADA("~/Dropbox/projects/tardis/tada_modelling/tada_test/pipe_traj_mv.mat")
+```
+
+Now we can access columns as follows
+```{r}
+d$audio # all columns of 'audio' list
+d$audio$SIGNAL # just the 'signal' column of 'audio'
+plot(d$audio$SIGNAL, type = "l") # plot audio signal (need to add proper time variable)
+```
+
+
+### Plotting signals ###
+
+We can plot tract variable signals (across the whole file)
+```{r}
+plot(d$TBCD$SIGNAL, type = "l") # TBCD
+plot(d$TBCL$SIGNAL, type = "l") # TBCL
+plot(d$TBCD$SIGNAL,d$TBCL$SIGNAL, type = "l") # TBCD~TBCL (what's this mean...? cool though)
+```
+
+Generally, we want one variable with just task variables, with one column per variable:
+```{r}
+d.wide <- unnestTADA(d)
+```
+
+The above plots are much easier to do using the now unnested data, as we can refer directly to variables:
+
+```{r}
+plot(d.wide$TBCL, type = "l") 
+```
+
+### Wide formant data ###
+
+We can also convert the data to wide format. This allows us to easily show multiple variables on a single plot.
+
+```{r}
+d.long <- gather(d.wide, "Variable", "Value", -Sample, -Time)
+d.long <- bind_rows(d.long, getAudioLong(d))
+```
+
+What articulators/variables are available to us?
+
+```{r}
+unique(d.long$Variable)
+```
+
+Plot selected variables over time using ggplot (i.e. Audio, Lip Aperture (LA), TBCL, TBCD, Glottis (GLO)).
+
+```{r}
+d.long %>% 
+  filter(Variable %in% c("Audio", "LA", "TBCL", "TBCD", "GLO")) %>% 
+  ggplot(aes(x = Time, y = Value)) +
+  geom_path() +
+  facet_wrap(~Variable, ncol = 1, scales = "free_y") + # let *only* y-scaling be free
+  theme_minimal()
+```
+
+
+### Further notes ###
+
+It would be nice to have segmental boundaries. However, TADA is not segmental, as it synthesises output based on overlapping gestures. Instead, we need to force-align the acoustic signal and obtain temporal landmarks from the forced-alignment.
+
+
+
+
+
+
+
+
+
+
+
