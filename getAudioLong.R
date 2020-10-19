@@ -1,8 +1,6 @@
 # Sam Kirkham 2019-11-22
-# Functions for reading + processing Matlab files from TADA (TAsk Dynamic Application)
-
-
 ### getAudioLong ###
+
 # FUNCTION: transforms audio object from TADA into a usable long format, which can be attached to an unnested TADA object (output of unnestTADA) that has *then* been converted to long format and has the columns Sample/Time/Variable/Value
 # INPUT: data object produced by readTADA
 # OUTPUT: long object with columns Sample/Time/Variable/Value

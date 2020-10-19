@@ -1,13 +1,12 @@
 # Sam Kirkham 2019-11-22
-# Functions for reading + processing Matlab files from TADA (TAsk Dynamic Application)
-
-
 ### unnestTADA ###
+
 # FUNCTION: converts lists-within-lists to a series of columns for each articulatory variable
 # INPUT: data object produced by readTADA function
 # OUTPUT: a long format object with one column per tract variable
 # Note that the audio signal is excluded from this object due to a different sampling rate
 # See TADA manual for what each abbreviation corresponds to
+
 unnestTADA <- function(d){
   require(dplyr)
   tibble(
