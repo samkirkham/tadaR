@@ -31,17 +31,17 @@ library(tidyverse)
 You can load the tadaR functions as follows:
 
 ```{r}
-source("src/readTADA.R")
-source("src/unnestTADA.R")
+source("src/read_tada.R")
+source("src/unnest_tada.R")
 source("src/getAudioLong.R")
 ```
 
 ### Loading data and accessing variables ###
 
-Load a TADA file using `readTADA` function. As an example, we use a TADA synthesis of the word 'pipe'.
+Load a TADA file using `read_tada` function. As an example, we use a TADA synthesis of the word 'pipe'.
 
 ```{r}
-d <- readTADA("data/pipe_traj_mv.mat")
+d <- read_tada("data/pipe_traj_mv.mat")
 ```
 
 Now we can plot columns as follows.
@@ -56,7 +56,7 @@ plot(d$audio$SIGNAL, type = "l") # plot audio signal
 Generally, it's much easier to use the data in an unnested form, with one column for each variable.
 
 ```{r}
-d.wide <- unnestTADA(d)
+d.wide <- unnest_tada(d)
 ```
 
 The data object now looks like this:
