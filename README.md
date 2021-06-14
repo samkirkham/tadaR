@@ -18,9 +18,9 @@ library(tidyverse)
 You can load the tadaR functions as follows:
 
 ``` r
-source("readTADA.R")
-source("unnestTADA.R")
-source("getAudioLong.R")
+source("src/readTADA.R")
+source("src/unnestTADA.R")
+source("src/getAudioLong.R")
 ```
 
 ### Loading data and accessing variables
@@ -29,7 +29,7 @@ Load a TADA file using `readTADA` function. As an example, we use a TADA
 synthesis of the word ‘pipe’.
 
 ``` r
-d <- readTADA("pipe_traj_mv.mat")
+d <- readTADA("data/pipe_traj_mv.mat")
 ```
 
 Now we can plot columns as follows.
