@@ -160,9 +160,9 @@ Coming soon…
 
 3.  Plotting functions for generating gestural scores.
 
-4.  Forced-alignment of TADA acoustic data to impose segmental
-    boundaries on the gestural score (TADA itself is not segmental, as
-    it synthesises output based on the overlapping gestures)
+4.  Force-alignment of TADA acoustic data to impose segmental boundaries
+    on the gestural score (TADA itself is not segmental, as it
+    synthesises output based on the overlapping gestures)
 
 If you are interested in further articulatory-to-acoustic synthesis
 using TADA data then HLSyn may also be helpful:
