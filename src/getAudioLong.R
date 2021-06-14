@@ -1,9 +1,9 @@
-#' Obtains audio from readTADA object and returns in long format
+#' Obtains audio from read_tada object and returns in long format
 #'
-#' @description Unnests readTADA audio object into long format object
-#' the output of this can be attached to an unnested TADA object (output of unnestTADA) that has *then* been converted to long format and has the columns Sample/Time/Variable
-#' unnestTADA does not work for obtaining audio due to sampling rate differences between audio and articulatory data
-#' @param d tibble produced by readTADA function
+#' @description Unnests read_tada audio object into long format object
+#' the output of this can be attached to an unnested TADA object (output of unnest_tada) that has *then* been converted to long format and has the columns Sample/Time/Variable
+#' unnest_tada does not work for obtaining audio due to sampling rate differences between audio and articulatory data
+#' @param d tibble produced by read_tada function
 #' @return long format object with columns Sample/Time/Variable/Value
 
 getAudioLong <- function(d){
