@@ -155,8 +155,8 @@ Coming soon…
 
 2.  Facility to convert TADA files to SSFF format for use with the EMU
     system: <https://github.com/IPS-LMU/emuR> This will allow for
-    interactive viewing of gestural synthesis and also take advance of
-    EMU-webApp’s gestural annotation algorithms.
+    interactive viewing of gestural synthesis and use of EMU-webApp’s
+    gestural annotation algorithms.
 
 3.  Plotting functions for generating gestural scores.
 
