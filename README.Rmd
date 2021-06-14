@@ -5,11 +5,12 @@ output: github_document
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  eval = FALSE,
+  eval = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
-)
+  out.width = "100%",
+  message = FALSE,
+  root.dir = "/Users/sam/Dropbox/scripts/github/tadaR")
 library(knitr)
 ```
 
@@ -20,11 +21,11 @@ Sam Kirkham
 
 ### Preliminaries ###
 
-The code works directly on the exported `.mat` MATLAB objects from TADA. It requires the following packages.
+The code works directly on the exported `.mat` MATLAB objects from TADA. It requires the following packages to be installed.
 
 ```{r}
 library(R.matlab)
-library(tibble)
+library(tidyverse)
 ```
 
 You can load the tadaR functions as follows:
@@ -40,14 +41,12 @@ source("getAudioLong.R")
 Load a TADA file using `readTADA` function. As an example, we use a TADA synthesis of the word 'pipe'.
 
 ```{r}
-d <- readTADA("~/Dropbox/projects/tardis/tada_modelling/tada_test/pipe_traj_mv.mat")
+d <- readTADA("pipe_traj_mv.mat")
 ```
 
-Now we can access columns as follows.
+Now we can plot columns as follows.
 
 ```{r}
-d$audio # all columns of 'audio' list
-d$audio$SIGNAL # just the 'signal' column of 'audio'
 plot(d$audio$SIGNAL, type = "l") # plot audio signal
 ```
 
@@ -67,6 +66,12 @@ Generally though, it's much easier to use the data in an unnested form, with one
 d.wide <- unnestTADA(d)
 ```
 
+The data object now looks like this:
+
+```{r}
+head(d.wide)
+```
+
 The above plots are now much easier to do using the unnested data, as we can refer directly to variables.
 
 ```{r}
@@ -80,8 +85,8 @@ We can also convert the data to long format. This allows us to easily show multi
 First we can create a long data object.
 
 ```{r}
-d.long <- gather(d.wide, "Variable", "Value", -Sample, -Time)
-d.long <- bind_rows(d.long, getAudioLong(d))
+d.long <- tidyr::gather(d.wide, "Variable", "Value", -Sample, -Time)
+d.long <- dplyr::bind_rows(d.long, getAudioLong(d))
 ```
 
 The following code shows us which articulators/variables are available to us.
@@ -94,8 +99,8 @@ We can then plot selected variables over time using ggplot. The below code plots
 
 ```{r}
 d.long %>% 
-  filter(Variable %in% c("Audio", "LA", "TBCL", "TBCD", "GLO")) %>% 
-  ggplot(aes(x = Time, y = Value)) +
+  dplyr::filter(Variable %in% c("Audio", "LA", "TBCL", "TBCD", "GLO")) %>% 
+  ggplot2::ggplot(aes(x = Time, y = Value)) +
   geom_path() +
   facet_wrap(~Variable, ncol = 1, scales = "free_y") + # let *only* y-scaling be free
   theme_minimal()
@@ -105,14 +110,3 @@ d.long %>%
 ### Further notes ###
 
 It would be nice to have segmental boundaries. However, TADA is not segmental, as it synthesises output based on overlapping gestures. Instead, we would need to force-align the synthesised acoustic signal and obtain temporal landmarks from the force-alignment.
-
-
-
-
-
-
-
-
-
-
-
