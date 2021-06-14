@@ -106,11 +106,18 @@ First we can create a long data object.
 
 ``` r
 d.long <- tidyr::gather(d.wide, "Variable", "Value", -Sample, -Time)
+```
+
+In order to get a long audio object, we use `getAudioLong` and add it to
+the above object. This is necessary because the TADA audio object has a
+different sampling rate from the articulatory channels.
+
+``` r
 d.long <- dplyr::bind_rows(d.long, getAudioLong(d))
 ```
 
 The following code shows us which articulators/variables are available
-to us.
+to us in `d.long`.
 
 ``` r
 unique(d.long$Variable)
@@ -138,11 +145,25 @@ d.long %>%
   theme_minimal()
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
 
-### Further notes
+### Further notes and future plans
 
-It would be nice to have segmental boundaries. However, TADA is not
-segmental, as it synthesises output based on overlapping gestures.
-Instead, we would need to force-align the synthesised acoustic signal
-and obtain temporal landmarks from the force-alignment.
+Coming soon…
+
+1.  R package with better documentation and examples.
+
+2.  Facility to convert TADA files to SSFF format for use with the EMU
+    system: <https://github.com/IPS-LMU/emuR> This will allow for
+    interactive viewing of gestural synthesis and also take advance of
+    EMU-webApp’s gestural annotation algorithms.
+
+3.  Plotting functions for generating gestural scores.
+
+4.  Forced-alignment of TADA acoustic data to impose segmental
+    boundaries on the gestural score (TADA itself is not segmental, as
+    it synthesises output based on the overlapping gestures)
+
+If you are interested in further articulatory-to-acoustic synthesis
+using TADA data then HLSyn may also be helpful:
+<https://github.com/samkirkham/hlsyn>
