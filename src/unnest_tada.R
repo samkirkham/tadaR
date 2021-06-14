@@ -1,12 +1,12 @@
-#' Converts nested tibble created by readTADA to unnested columns for each articulatory variable
+#' Converts nested tibble created by read_tada to unnested columns for each articulatory variable
 #'
-#' @description Unnests readTADA object into long format
+#' @description Unnests read_tada object into long format
 #' Note that the audio signal is excluded from this object due to a different sampling rate (see getAudioLong function to unnest audio object)
 #' see TADA manual for what each abbreviation corresponds to: https://sail.usc.edu/~lgoldste/ArtPhon/TADA%20stuff/TADA_manual_v09.pdf
-#' @param d tibble produced by readTADA function
+#' @param d tibble produced by read_tada function
 #' @return long format tibble with one column per tract variable
 
-unnestTADA <- function(d){
+unnest_tada <- function(d){
   tibble::tibble(
     Sample = 1:nrow(d$TBCL$SIGNAL),
     Time = Sample/200,
