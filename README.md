@@ -74,7 +74,7 @@ head(d.wide)
 ```
 
 We can now refer directly to variables in order to plot the whole signal
-file. The new object also has a `Time` object.
+file. The new object also has a `Time` column.
 
 ``` r
 plot(d.wide$Time, d.wide$TBCL, type = "l", xlab = "Time (secs)", ylab = "TBCL")
