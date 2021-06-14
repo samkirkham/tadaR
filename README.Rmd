@@ -53,14 +53,7 @@ plot(d$audio$SIGNAL, type = "l") # plot audio signal
 
 ### Plotting signals and wide data ###
 
-We can plot tract variable signals (across the whole file).
-
-```{r}
-plot(d$TBCD$SIGNAL, type = "l") # TBCD
-plot(d$TBCL$SIGNAL, type = "l") # TBCL
-```
-
-Generally though, it's much easier to use the data in an unnested form, with one column for each variable.
+Generally, it's much easier to use the data in an unnested form, with one column for each variable.
 
 ```{r}
 d.wide <- unnestTADA(d)
@@ -72,10 +65,10 @@ The data object now looks like this:
 head(d.wide)
 ```
 
-The above plots are now much easier to do using the unnested data, as we can refer directly to variables.
+We can now refer directly to variables in order to plot the whole signal file. The new object also has a `Time` object.
 
 ```{r}
-plot(d.wide$TBCL, type = "l") 
+plot(d.wide$Time, d.wide$TBCL, type = "l", xlab = "Time (secs)", ylab = "TBCL")
 ```
 
 ### Long formant data ###

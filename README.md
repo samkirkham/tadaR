@@ -42,22 +42,8 @@ plot(d$audio$SIGNAL, type = "l") # plot audio signal
 
 ### Plotting signals and wide data
 
-We can plot tract variable signals (across the whole file).
-
-``` r
-plot(d$TBCD$SIGNAL, type = "l") # TBCD
-```
-
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
-
-``` r
-plot(d$TBCL$SIGNAL, type = "l") # TBCL
-```
-
-<img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
-
-Generally though, it’s much easier to use the data in an unnested form,
-with one column for each variable.
+Generally, it’s much easier to use the data in an unnested form, with
+one column for each variable.
 
 ``` r
 d.wide <- unnestTADA(d)
@@ -87,14 +73,14 @@ head(d.wide)
 #> #   gPI <dbl>, gSPI <dbl>, gTR <dbl>
 ```
 
-The above plots are now much easier to do using the unnested data, as we
-can refer directly to variables.
+We can now refer directly to variables in order to plot the whole signal
+file. The new object also has a `Time` object.
 
 ``` r
-plot(d.wide$TBCL, type = "l") 
+plot(d.wide$Time, d.wide$TBCL, type = "l", xlab = "Time (secs)", ylab = "TBCL")
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ### Long formant data
 
@@ -145,7 +131,7 @@ d.long %>%
   theme_minimal()
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
 
 ### Further notes and future plans
 
