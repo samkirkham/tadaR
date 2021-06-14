@@ -24,7 +24,7 @@ The code works directly on the exported `.mat` MATLAB objects from TADA. It requ
 
 ```{r}
 library(R.matlab)
-library(tidyverse)
+library(tibble)
 ```
 
 You can load the tadaR functions as follows:
