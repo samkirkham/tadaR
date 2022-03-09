@@ -5,6 +5,12 @@
 
 Sam Kirkham
 
+
+## NOTE
+
+Update 2022-03-09
+- This code is currently being massively re-factored and integrated into an R package, which allows you to run simulations directly from R and facilitates various processing/analysis operations. Release coming soon!
+
 ### Preliminaries
 
 The code works directly on the exported `.mat` MATLAB objects from TADA.
