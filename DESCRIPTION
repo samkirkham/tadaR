@@ -1,0 +1,27 @@
+Package: tadaR
+Title: R functions for processing and plotting output from TADA (TAsk Dynamics Application)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Sam",
+           family = "Kirkham",
+           role = c("aut", "cre"),
+           email = "s.kirkham@lancaster.ac.uk",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: R functions for processing and plotting output from TADA (TAsk Dynamics Application).
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    dplyr,
+    gsignal,
+    magrittr,
+    matlabr,
+    R.matlab,
+    tibble,
+    tidyselect,
+    utils
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

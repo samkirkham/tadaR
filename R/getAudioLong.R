@@ -5,6 +5,7 @@
 #' unnest_tada does not work for obtaining audio due to sampling rate differences between audio and articulatory data
 #' @param d tibble produced by read_tada function
 #' @return long format object with columns Sample/Time/Variable/Value
+#' @export
 
 getAudioLong <- function(d){
   audio <- data.frame(1:nrow(d$audio$SIGNAL))

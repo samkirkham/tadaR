@@ -5,11 +5,12 @@
 #' see TADA manual for what each abbreviation corresponds to: https://sail.usc.edu/~lgoldste/ArtPhon/TADA%20stuff/TADA_manual_v09.pdf
 #' @param d tibble produced by read_tada function
 #' @return long format tibble with one column per tract variable
+#' @export
 
 unnest_tada <- function(d){
   tibble::tibble(
     Sample = 1:nrow(d$TBCL$SIGNAL),
-    Time = Sample/200,
+    Time = Sample/200 - (1/200), # subtract sampling period to get from zero
     ULx = d$UL$SIGNAL[,1],
     ULy = d$UL$SIGNAL[,2],
     LLx = d$LL$SIGNAL[,1],
