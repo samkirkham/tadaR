@@ -20,9 +20,10 @@ knitr::opts_chunk$set(
 
 The goal of tadaR is to provide R functions for processing and plotting output from TADA (TAsk Dynamics Application). This involves operations such as:
 
-1. Reading TADA Matlab output files
-2. Processing these files into a more R-friendly format
-3. Calculating derived variables, such as smoothing/filtering articualtor variables and calculating velocities.
+1. Run the TADA application from R without interacting with Matlab
+2. Reading TADA Matlab output files
+3. Processing these files into a more R-friendly format
+4. Calculating derived variables, such as smoothing/filtering articualtor variables and calculating velocities.
 
 
 ## Preliminaries
@@ -37,7 +38,7 @@ library(tidyverse)
 
 ## Running TADA simulation from R
 
-The function `run_tada` is a wrapper that calls Matlab from R, allows command line input to Matlab, and allows you to specify the directory in which Matlab operates (set via `target_dir`). In all cases, `matlab_path` is the location of the Matlab application on your computer. This is optional, as `run_tada` tries to find it automatically, but if it fails to do so then you can specify it in `matlab_path`.
+The function `run_tada` is a wrapper that calls Matlab from R, allows command line input to Matlab, and allows you to specify the directory in which Matlab operates (set via `target_dir`). In all cases, `matlab_path` is the location of the Matlab application on your computer. This is optional, as `run_tada` tries to find it automatically, but if it fails to do so then you can specify it in `matlab_path`. Note that the TADA software must be downloaded and named in your Matlab path for this to work. You can download TADA from: https://haskinslabs.org/research/features-and-demos/tada-task-dynamic-model-inter-articulator-speech-coordination/tada
 
 Here are some examples of using `run_tada`.
 
