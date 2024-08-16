@@ -15,6 +15,10 @@ such as:
 3.  Calculating derived variables, such as smoothing/filtering
     articualtor variables and calculating velocities.
 
+If you use this in your work please cite:
+
+- Kirkham, Sam (2024). tadaR: R interface to Task Dynamic Application (v.1.0.0). Zenodo. https://doi.org/10.5281/zenodo.13329512
+
 ## Preliminaries
 
 The code works directly on the exported `.mat` MATLAB objects from TADA.
