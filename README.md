@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tadaR
+# tadaR: R interface to Task Dynamic Application
 
 <!-- badges: start -->
 <!-- badges: end -->
